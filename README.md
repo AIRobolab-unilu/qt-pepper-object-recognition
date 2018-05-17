@@ -1,10 +1,14 @@
 # qt-pepper-emotion-classification
 
-This repository includes the two packages used to perform face emotion recognition with the QT robot and Pepper.
+This repository aims to perform emotion classification and object recognition with the QT robot and Pepper in order to have a better understanding of the human-robot interacton context. 
 
-## Getting Started
+## The face_classification package
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This package is used to perform face emotion recognition with the QT robot and Pepper.
+
+### Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -41,7 +45,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+This is a non-exhaustive list of the people whose code was used to achieve this project :
+
+* Octavio Arriaga (oarriaga)
+* Dat Tran (datitran)
+* Francisco Lera (franLera)
 
