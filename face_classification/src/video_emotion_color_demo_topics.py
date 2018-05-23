@@ -36,12 +36,30 @@ class image_converter:
     
     self.bridge = CvBridge()
 
-    self.image_pub = rospy.Publisher("/face_detection/image_raw",Image, queue_size=10)
+    self._image_topic_output = "~image_topic_output"
+    print rospy.has_param(self._image_topic_output)
+    if rospy.has_param(self._image_topic_output):
+      self.image_topic_output = rospy.get_param(self._image_topic_output)
+      self.image_pub = rospy.Publisher(self.image_topic_output, Image, queue_size=10)
 
-    self.image_sub = rospy.Subscriber("/cv_camera/image_raw", Image, self.callback)
+    self._image_topic_input = "~image_topic_input"
+    print rospy.has_param(self._image_topic_input)
+    if rospy.has_param(self._image_topic_input):
+      self.image_topic_input = rospy.get_param(self._image_topic_input)
+      self.image_sub = rospy.Subscriber(self.image_topic_input, Image, self.callback)
 
-    self.detection_model_path = '../trained_models/detection_models/haarcascade_frontalface_default.xml'
-    self.emotion_model_path = '../trained_models/emotion_models/fer2013_mini_XCEPTION.110-0.65.hdf5'
+
+    self._detection_model_path = "~detection_model_path"
+    print rospy.has_param(self._detection_model_path)
+    if rospy.has_param(self._detection_model_path):
+      self.detection_model_path = rospy.get_param(self._detection_model_path)
+
+    self._emotion_model_path = "~emotion_model_path"
+    print rospy.has_param(self._emotion_model_path)
+    if rospy.has_param(self._emotion_model_path):
+      self.emotion_model_path = rospy.get_param(self._emotion_model_path)
+
+
     self.emotion_labels = get_labels('fer2013')
 
     # hyper-parameters for bounding boxes shape
@@ -62,6 +80,7 @@ class image_converter:
   def callback(self,data):
     try:
       bgr_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
+      cv2.imshow("Image window", bgr_image)
     except CvBridgeError as e:
       print(e)
 
