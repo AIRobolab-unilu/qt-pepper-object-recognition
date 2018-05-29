@@ -92,4 +92,5 @@ This is a non-exhaustive list of the people whose code was used to achieve this 
 * Octavio Arriaga (https://github.com/oarriaga/face_classification)
 * Dat Tran (https://github.com/datitran/object_detector_app)
 * Francisco Lera (https://github.com/FranLera/simple_face_detection)
+* Marko Bjelonic (https://github.com/leggedrobotics/darknet_ros)
 
