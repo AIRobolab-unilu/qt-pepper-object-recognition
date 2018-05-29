@@ -88,24 +88,21 @@ void YoloObjectDetector::init()
   std::string dataPath;
   std::string configModel;
   std::string weightsModel;
-  std::string yoloModelName;
 
   // Threshold of object detection.
-  nodeHandle_.param("yolo_model_name", yoloModelName, std::string("/default"));
+  float thresh;
+  nodeHandle_.param("yolo_model/threshold/value", thresh, (float) 0.3);
 
-  //Name of the model
-  nodeHandle_.param("yolo_model/weight_file/name", weightsModel, std::string("/default"));
-  
   // Path to weights file.
   nodeHandle_.param("yolo_model/weight_file/name", weightsModel,
-                    std::string(yoloModelName + ".weights"));
+                    std::string("yolov2-tiny.weights"));
   nodeHandle_.param("weights_path", weightsPath, std::string("/default"));
   weightsPath += "/" + weightsModel;
   weights = new char[weightsPath.length() + 1];
   strcpy(weights, weightsPath.c_str());
 
   // Path to config file.
-  nodeHandle_.param("yolo_model/config_file/name", configModel, std::string(yoloModelName + ".cfg"));
+  nodeHandle_.param("yolo_model/config_file/name", configModel, std::string("yolov2-tiny.cfg"));
   nodeHandle_.param("config_path", configPath, std::string("/default"));
   configPath += "/" + configModel;
   cfg = new char[configPath.length() + 1];
@@ -143,7 +140,7 @@ void YoloObjectDetector::init()
   bool detectionImageLatch;
 
   nodeHandle_.param("subscribers/camera_reading/topic", cameraTopicName,
-                    std::string("/camera/image_raw"));
+                    std::string("/naoqi_driver/camera/front/image_raw"));
   nodeHandle_.param("subscribers/camera_reading/queue_size", cameraQueueSize, 1);
   nodeHandle_.param("publishers/object_detector/topic", objectDetectorTopicName,
                     std::string("found_object"));
