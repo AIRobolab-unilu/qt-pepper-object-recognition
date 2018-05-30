@@ -1,0 +1,8 @@
+<launch>
+
+  <node name="video_emotion_color_demo" pkg="face_classification" type="video_emotion_color_demo.py" output="screen">
+    <param name="detection_model_path" value="$(find face_classification)/trained_models/detection_models/haarcascade_frontalface_default.xml"/>
+    <param name="emotion_model_path" value="$(find face_classification)/trained_models/emotion_models/fer2013_mini_XCEPTION.110-0.65.hdf5"/>
+  </node>
+
+</launch>
