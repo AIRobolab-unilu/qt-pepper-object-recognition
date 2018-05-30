@@ -15,9 +15,26 @@ from utils.inference import apply_offsets
 from utils.inference import load_detection_model
 from utils.preprocessor import preprocess_input
 
+# Initialize the node with rosp
+rospy.init_node('publisher_node')
+emotion_publisher = rospy.Publisher("/qt_face/setEmotion",String,queue_size=10)
+speech_publisher = rospy.Publisher("/speaker",String,queue_size=10)
+emotion_msg = String()
+speech_msg = String()
+
 # parameters for loading data and images
-detection_model_path = '../trained_models/detection_models/haarcascade_frontalface_default.xml'
-emotion_model_path = '../trained_models/emotion_models/fer2013_mini_XCEPTION.110-0.65.hdf5'
+
+_detection_model_path = "~detection_model_path"
+print rospy.has_param(_detection_model_path)
+if rospy.has_param(_detection_model_path):
+    detection_model_path = rospy.get_param(_detection_model_path)
+
+_emotion_model_path = "~emotion_model_path"
+print rospy.has_param(_emotion_model_path)
+if rospy.has_param(_emotion_model_path):
+    emotion_model_path = rospy.get_param(_emotion_model_path)
+
+
 emotion_labels = get_labels('fer2013')
 
 # hyper-parameters for bounding boxes shape
@@ -34,19 +51,11 @@ emotion_target_size = emotion_classifier.input_shape[1:3]
 # starting lists for calculating modes
 emotion_window = []
 
-# Initialize the node with rosp
-rospy.init_node('publisher_node')
-emotion_publisher = rospy.Publisher("/qt_face/setEmotion",String,queue_size=10)
-speech_publisher = rospy.Publisher("/speaker",String,queue_size=10)
-emotion_msg = String()
-speech_msg = String()
-
 # starting video streaming
 cv2.namedWindow('window_frame')
 video_capture = cv2.VideoCapture(0)
 while True:
     bgr_image = video_capture.read()[1]
-    #cam_image = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8)
     gray_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2GRAY)
     rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
     faces = detect_faces(face_detection, gray_image)
@@ -73,7 +82,7 @@ while True:
         emotion_window.append(emotion_text)
 
 	
-	emotion_msg.data = emotion_text
+	emotion_msg.data = 'ava_' + emotion_text
 	emotion_publisher.publish(emotion_msg)
 	speech_msg.data = 'I see that you are ' + emotion_text
 	#speech_publisher.publish(speech_msg)
