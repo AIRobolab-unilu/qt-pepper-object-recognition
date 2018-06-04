@@ -52,7 +52,7 @@ wlp5s0    Link encap:Ethernet  HWaddr 24:fd:52:7a:04:cb
           RX bytes:81344563 (81.3 MB)  TX bytes:5680750 (5.6 MB)
 ```
 
-You will also have to check and replace the IP addresses of both robots by the same process using `ifconfig` on them.
+You will also have to **check and replace the IP addresses of both robots** by the same process using `ifconfig` on them.
 
 - If you are running the roscore on your computer just uncomment this line `#export ROS_MASTER_URI=http://$MY_IP:11311/`
 
@@ -71,6 +71,8 @@ You will also have to check and replace the IP addresses of both robots by the s
 ## The face_classification package
 
 This package is used to perform face emotion recognition with the QT robot and Pepper.
+
+With QT, the package includes a program that can mimic the emotion shown by the user QT is interacting with and seeing with its camera, a sort of **face mirroring**. It can also say outloud the emotion it is seeing.
 
 ### Prerequisites 
 You need to install the following python libraries before running the package. To do that, you can use pip (to install it, write in the terminal `sudo apt-get install python-pip`)
@@ -112,6 +114,9 @@ Also, you can use these options when you launch the launch files to specify the 
 * input_camera_topic for the camera from which the images are grabbed
 * output_camera_topic for the resulting images after classification
 
+Here is an example :
+`roslaunch face_classification face_classification_qt.launch image_topic_output:=/face_detection/image_raw image_topic_input:=/your_camera/image_raw`
+
 To run the camera to feed the image topic, you can run in another terminal the command : `rosrun cv_camera cv_camera`
 
 ## The darknet_ros package
@@ -134,7 +139,7 @@ To run it, go to the catkin main folder of the face classification package and t
 ~/catkin_ws$ source devel/setup.bash
 ```
 
-- Then just run the launchfile
+- Then just run the launch file
 
 ```
 ~/catkin_ws$ roslaunch darknet_ros darknet_ros.launch
@@ -147,10 +152,15 @@ To run it, go to the catkin main folder of the face classification package and t
 
 ```
 
-- If you already have a node publishing images in a specific topic, you will have first to open the **launchfile** located in **darknet_ros/darknet_ros/launch/** and modify the **line 24** where you have to replace /cv_camera/image_raw with the name of your topic.
+- If you already have a node publishing the camera images in a specific topic, use the following option to specify the name of your topic.
 
-- If you want to run the resulting images from the detection, use this topic **/detection_image**. See the readme [here](https://github.com/leggedrobotics/darknet_ros/blob/master/README.md) for more details.
+```
+~/catkin_ws$ roslaunch darknet_ros darknet_ros.launch input_camera_topic:=yourTopicName
+```
 
+- If you want to visualize the resulting images from the detection remotely, use this topic **/darknet_ros/detection_image** (see the readme [here](https://github.com/leggedrobotics/darknet_ros/blob/master/README.md) for more details). You can view it with the command : 
+
+`rosrun image_view image_view image:=/darknet_ros/detection_image`
 
 
 ## Contributing
@@ -167,10 +177,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-This is a non-exhaustive list of the people whose code was used to achieve this project :
+This is a non-exhaustive list of the people whose codes were used to achieve this project :
 
-* Octavio Arriaga (https://github.com/oarriaga/face_classification)
-* Dat Tran (https://github.com/datitran/object_detector_app)
-* Francisco Lera (https://github.com/FranLera/simple_face_detection)
-* Marko Bjelonic (https://github.com/leggedrobotics/darknet_ros)
+* Octavio Arriaga ([face classification package](https://github.com/oarriaga/face_classification))
+* Dat Tran ([object_detector_app](https://github.com/datitran/object_detector_app))
+* Francisco Lera (https://github.com/FranLera/simple_face_detection))
+* Marko Bjelonic ([darknet_ros package](https://github.com/leggedrobotics/darknet_ros))
 
