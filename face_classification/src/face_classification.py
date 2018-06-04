@@ -213,10 +213,14 @@ class PepperEmotionListener:
                                 draw_bounding_box(face_coordinates, rgb_image, color)
                                 draw_text(face_coordinates, rgb_image, emotion_mode,
                                         color, 0, -45, 1, 1)
+                         
+                    try:
+                        self.image_pub.publish(self.bridge.cv2_to_imgmsg(rgb_image, "bgr8"))
+                    except CvBridgeError as e:
+                        print(e)
 
-
-                    cv2.imshow("Image window", rgb_image)
-                    cv2.waitKey(3)
+                    #cv2.imshow("Image window", rgb_image)
+                    #cv2.waitKey(3)
 
                 #try:
                     #self.image_pub.publish(self.bridge.cv2_to_imgmsg(bgr_image, "bgr8"))
