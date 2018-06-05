@@ -1,12 +1,12 @@
-# qt-pepper-emotion-classification
+# QT and Pepper object recognition
 
-This repository aims to perform emotion classification and object recognition with the QT robot and Pepper in order to have a better understanding of the human-robot interacton context. 
+This repository aims to perform object recognition with the QT robot and Pepper in order to have a better understanding of the human-robot interacton context. 
 
 ## Getting Started
 
 You should have installed on your computer [**ROS Kinetic**](http://wiki.ros.org/kinetic/Installation) and **Python 2.7**(which is preinstalled on Ubuntu).
 
-Clone this git repository on your local machine (QT or your computer) in you ros catkin workspace.
+Clone this git repository on your local machine (QT or your computer) in your ros catkin workspace.
 
 ```
 ~/catkin_ws$ git clone --recursive https://github.com/AIRobolab-unilu/qt-pepper-emotion-classification.git
@@ -68,57 +68,6 @@ You will also have to **check and replace the IP addresses of both robots** by t
 
 `#export ROS_MASTER_URI=http://$ROBOT_IP:11311/`
 
-## The face_classification package
-
-This package is used to perform face emotion recognition with the QT robot and Pepper.
-
-With QT, the package includes a program that can mimic the emotion shown by the user QT is interacting with and seeing with its camera, a sort of **face mirroring**. It can also say outloud the emotion it is seeing.
-
-### Prerequisites 
-You need to install the following python libraries before running the package. To do that, you can use pip (to install it, write in the terminal `sudo apt-get install python-pip`)
-
-```
-pip install numpy scipy scikit-learn pillow tensorflow pandas h5py opencv-python keras==2.0.9 statistics pyyaml pyparsing cycler matplotlib Flask
-pip install panda
-```
-Please note that you need to install **keras version 2.0.9** and not another one.
-
-You might also need to install [tensorflow with virtualenv](https://www.tensorflow.org/install/install_linux#InstallingVirtualenv) if the pip version creates errors when the package is run.
-
-If you don't have a node publishing the camera images in a specific topic, you may also have to install a ROS package that can open the camera ([cv_camera](https://github.com/OTL/cv_camera)).
-
-### Installing and running
-
-To run the package, you have different options using the launch files :
-
-*  Run the program directly onboard the qt or any computer but without relying on topic to transmit the images
-
-`roslaunch face_classification face_classification_basic.launch`
-
-*   While on QT, run the program directly as previously but also activates the face mirroring and the speech module so qt can say the emotion it is recognizing
-
-`roslaunch face_classification face_classification_qt_basic.launch`
-
-*  Run the program directly onboard the qt or any computer using topic to transmit the images
-
-`roslaunch face_classification face_classification.launch`
-
-*  While on QT, run the program using topic to transmit the images but activates the face mirroring and the speech module so qt can say the emotion it is recognizing
-
-`roslaunch face_classification face_classification_qt.launch`
-
-Also, you can use these options when you launch the launch files to specify the models used or the camera used:
-
-* detection_model_path for the face detection model
-* emotion_model_path for the emotion recognition model
-* input_camera_topic for the camera from which the images are grabbed
-* output_camera_topic for the resulting images after classification
-
-Here is an example :
-`roslaunch face_classification face_classification_qt.launch image_topic_output:=/face_detection/image_raw image_topic_input:=/your_camera/image_raw`
-
-To run the camera to feed the image topic, you can run in another terminal the command : `rosrun cv_camera cv_camera`
-
 ## The darknet_ros package
 
 This package is used to perform object recognition with the QT robot and Pepper.
@@ -179,8 +128,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 This is a non-exhaustive list of the people whose codes were used to achieve this project :
 
-* Octavio Arriaga ([face classification package](https://github.com/oarriaga/face_classification))
-* Dat Tran ([object_detector_app](https://github.com/datitran/object_detector_app))
-* Francisco Lera (https://github.com/FranLera/simple_face_detection))
+
 * Marko Bjelonic ([darknet_ros package](https://github.com/leggedrobotics/darknet_ros))
+* Dat Tran ([object_detector_app](https://github.com/datitran/object_detector_app))
 
