@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+  <!-- Console launch prefix -->
+  <arg name="launch_prefix" default=""/>
+
+  <!-- Config and weights folder. -->
+  <!--<arg name="input_camera_topic"           default="/cv_camera/image_raw"/>-->
+
+  <!-- Start darknet and ros wrapper -->
+  <node pkg="object_recognition" type="classification.py" name="object_recognition" output="screen" launch-prefix="$(arg launch_prefix)" />
+
+</launch>
