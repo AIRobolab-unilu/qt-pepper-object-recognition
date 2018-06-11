@@ -1,0 +1,6 @@
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot1.jpg
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot2.jpg
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot3.jpg
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot4.jpg
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot5.jpg
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot6.jpg

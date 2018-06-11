@@ -1,0 +1,1 @@
+/home/ibrahim/catkin_ws/src/darknet/data/img/robot1.jpg
