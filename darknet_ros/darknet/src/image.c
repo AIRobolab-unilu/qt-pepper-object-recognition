@@ -131,13 +131,7 @@ image tile_images(image a, image b, int dx)
 
 image get_label(image **characters, char *string, int size)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     size = size/10;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     if(size > 7) size = 7;
     image label = make_empty_image(0,0,0);
     while(*string){
@@ -242,15 +236,7 @@ image **load_alphabet()
     return alphabets;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void draw_detections(image im, detection *dets, int num, float thresh, char **names, image **alphabet, int classes)
-=======
-void draw_detections(image im, int num, float thresh, box *boxes, float **probs, float **masks, char **names, image **alphabet, int classes)
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-void draw_detections(image im, int num, float thresh, box *boxes, float **probs, float **masks, char **names, image **alphabet, int classes)
->>>>>>> origin
 {
     int i,j;
 
@@ -258,15 +244,7 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
         char labelstr[4096] = {0};
         int class = -1;
         for(j = 0; j < classes; ++j){
-<<<<<<< HEAD
-<<<<<<< HEAD
             if (dets[i].prob[j] > thresh){
-=======
-            if (probs[i][j] > thresh){
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-            if (probs[i][j] > thresh){
->>>>>>> origin
                 if (class < 0) {
                     strcat(labelstr, names[j]);
                     class = j;
@@ -274,15 +252,7 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
                     strcat(labelstr, ", ");
                     strcat(labelstr, names[j]);
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
                 printf("%s: %.0f%%\n", names[j], dets[i].prob[j]*100);
-=======
-                printf("%s: %.0f%%\n", names[j], probs[i][j]*100);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-                printf("%s: %.0f%%\n", names[j], probs[i][j]*100);
->>>>>>> origin
             }
         }
         if(class >= 0){
@@ -307,16 +277,8 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
             rgb[0] = red;
             rgb[1] = green;
             rgb[2] = blue;
-<<<<<<< HEAD
-<<<<<<< HEAD
             box b = dets[i].bbox;
             //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
-=======
-            box b = boxes[i];
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-            box b = boxes[i];
->>>>>>> origin
 
             int left  = (b.x-b.w/2.)*im.w;
             int right = (b.x+b.w/2.)*im.w;
@@ -330,27 +292,12 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
 
             draw_box_width(im, left, top, right, bot, width, red, green, blue);
             if (alphabet) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 image label = get_label(alphabet, labelstr, (im.h*.03));
                 draw_label(im, top + width, left, label, rgb);
                 free_image(label);
             }
             if (dets[i].mask){
                 image mask = float_to_image(14, 14, 1, dets[i].mask);
-=======
-=======
->>>>>>> origin
-                image label = get_label(alphabet, labelstr, (im.h*.03)/10);
-                draw_label(im, top + width, left, label, rgb);
-                free_image(label);
-            }
-            if (masks){
-                image mask = float_to_image(14, 14, 1, masks[i]);
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
                 image resized_mask = resize_image(mask, b.w*im.w, b.h*im.h);
                 image tmask = threshold_image(resized_mask, .5);
                 embed_image(tmask, im, left, top);
@@ -449,8 +396,6 @@ void ghost_image(image source, image dest, int dx, int dy)
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void blocky_image(image im, int s)
 {
     int i,j,k;
@@ -480,10 +425,6 @@ void censor_image(image im, int dx, int dy, int w, int h)
     }
 }
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 void embed_image(image source, image dest, int dx, int dy)
 {
     int x,y,k;
@@ -839,18 +780,8 @@ void place_image(image im, int w, int h, int dx, int dy, image canvas)
     for(c = 0; c < im.c; ++c){
         for(y = 0; y < h; ++y){
             for(x = 0; x < w; ++x){
-<<<<<<< HEAD
-<<<<<<< HEAD
                 float rx = ((float)x / w) * im.w;
                 float ry = ((float)y / h) * im.h;
-=======
-                int rx = ((float)x / w) * im.w;
-                int ry = ((float)y / h) * im.h;
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-                int rx = ((float)x / w) * im.w;
-                int ry = ((float)y / h) * im.h;
->>>>>>> origin
                 float val = bilinear_interpolate(im, rx, ry, c);
                 set_pixel(canvas, x + dx, y + dy, c, val);
             }

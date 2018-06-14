@@ -7,13 +7,7 @@
 #include <float.h>
 #include <limits.h>
 #include <time.h>
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include <sys/time.h>
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
 #include "utils.h"
 
@@ -32,23 +26,11 @@ double get_wall_time()
 
 double what_time_is_it_now()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     struct timeval time;
     if (gettimeofday(&time,NULL)){
         return 0;
     }
     return (double)time.tv_sec + (double)time.tv_usec * .000001;
-=======
-    struct timespec now;
-    clock_gettime(CLOCK_REALTIME, &now);
-    return now.tv_sec + now.tv_nsec*1e-9;
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    struct timespec now;
-    clock_gettime(CLOCK_REALTIME, &now);
-    return now.tv_sec + now.tv_nsec*1e-9;
->>>>>>> origin
 }
 
 int *read_intlist(char *gpu_list, int *ngpus, int d)
@@ -648,8 +630,6 @@ int max_index(float *a, int n)
     return max_i;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 int int_index(int *a, int val, int n)
 {
     int i;
@@ -659,10 +639,6 @@ int int_index(int *a, int val, int n)
     return -1;
 }
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 int rand_int(int min, int max)
 {
     if (max < min){

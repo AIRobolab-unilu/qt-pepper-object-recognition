@@ -51,13 +51,7 @@ typedef struct{
     int *group_size;
     int *group_offset;
 } tree;
-<<<<<<< HEAD
-<<<<<<< HEAD
 tree *read_tree(char *filename);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
 typedef enum{
     LOGISTIC, RELU, RELIE, LINEAR, RAMP, TANH, PLSE, LEAKY, ELU, LOGGY, STAIR, HARDTAN, LHTAN
@@ -91,32 +85,16 @@ typedef enum {
     NETWORK,
     XNOR,
     REGION,
-<<<<<<< HEAD
-<<<<<<< HEAD
     YOLO,
     REORG,
     UPSAMPLE,
     LOGXENT,
     L2NORM,
-=======
-    REORG,
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    REORG,
->>>>>>> origin
     BLANK
 } LAYER_TYPE;
 
 typedef enum{
-<<<<<<< HEAD
-<<<<<<< HEAD
     SSE, MASKED, L1, SEG, SMOOTH,WGAN
-=======
-    SSE, MASKED, L1, SEG, SMOOTH
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    SSE, MASKED, L1, SEG, SMOOTH
->>>>>>> origin
 } COST_TYPE;
 
 typedef struct{
@@ -187,40 +165,20 @@ struct layer{
     float shift;
     float ratio;
     float learning_rate_scale;
-<<<<<<< HEAD
-<<<<<<< HEAD
     float clip;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     int softmax;
     int classes;
     int coords;
     int background;
     int rescore;
     int objectness;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    int does_cost;
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    int does_cost;
->>>>>>> origin
     int joint;
     int noadjust;
     int reorg;
     int log;
     int tanh;
-<<<<<<< HEAD
-<<<<<<< HEAD
     int *mask;
     int total;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
     float alpha;
     float beta;
@@ -233,31 +191,17 @@ struct layer{
     float class_scale;
     int bias_match;
     int random;
-<<<<<<< HEAD
-<<<<<<< HEAD
     float ignore_thresh;
     float truth_thresh;
     float thresh;
     float focus;
-=======
-    float thresh;
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    float thresh;
->>>>>>> origin
     int classfix;
     int absolute;
 
     int onlyforward;
     int stopbackward;
     int dontload;
-<<<<<<< HEAD
-<<<<<<< HEAD
     int dontsave;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     int dontloadscales;
 
     float temperature;
@@ -295,13 +239,7 @@ struct layer{
 
     float * delta;
     float * output;
-<<<<<<< HEAD
-<<<<<<< HEAD
     float * loss;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     float * squared;
     float * norms;
 
@@ -463,13 +401,7 @@ struct layer{
     float * scale_change_gpu;
 
     float * output_gpu;
-<<<<<<< HEAD
-<<<<<<< HEAD
     float * loss_gpu;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     float * delta_gpu;
     float * rand_gpu;
     float * squared_gpu;
@@ -551,13 +483,7 @@ typedef struct network{
     int train;
     int index;
     float *cost;
-<<<<<<< HEAD
-<<<<<<< HEAD
     float clip;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
 #ifdef GPU
     float *input_gpu;
@@ -589,8 +515,6 @@ typedef struct{
     float x, y, w, h;
 } box;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 typedef struct detection{
     box bbox;
     int classes;
@@ -600,10 +524,6 @@ typedef struct detection{
     int sort_class;
 } detection;
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 typedef struct matrix{
     int rows, cols;
     float **vals;
@@ -693,23 +613,11 @@ void backward_network(network *net);
 void update_network(network *net);
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 float dot_cpu(int N, float *X, int INCX, float *Y, int INCY);
 void axpy_cpu(int N, float ALPHA, float *X, int INCX, float *Y, int INCY);
 void copy_cpu(int N, float *X, int INCX, float *Y, int INCY);
 void scal_cpu(int N, float ALPHA, float *X, int INCX);
 void fill_cpu(int N, float ALPHA, float * X, int INCX);
-=======
-void axpy_cpu(int N, float ALPHA, float *X, int INCX, float *Y, int INCY);
-void copy_cpu(int N, float *X, int INCX, float *Y, int INCY);
-void scal_cpu(int N, float ALPHA, float *X, int INCX);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-void axpy_cpu(int N, float ALPHA, float *X, int INCX, float *Y, int INCY);
-void copy_cpu(int N, float *X, int INCX, float *Y, int INCY);
-void scal_cpu(int N, float ALPHA, float *X, int INCX);
->>>>>>> origin
 void normalize_cpu(float *x, float *mean, float *variance, int batch, int filters, int spatial);
 void softmax(float *input, int n, float temp, int stride, float *output);
 
@@ -735,14 +643,8 @@ float train_networks(network **nets, int n, data d, int interval);
 void sync_nets(network **nets, int n, int interval);
 void harmless_update_network_gpu(network *net);
 #endif
-<<<<<<< HEAD
-<<<<<<< HEAD
 image get_label(image **characters, char *string, int size);
 void draw_label(image a, int r, int c, image label, const float *rgb);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 void save_image_png(image im, const char *name);
 void get_next_batch(data d, int n, int offset, float *X, float *y);
 void grayscale_image_3c(image im);
@@ -769,24 +671,11 @@ void rgbgr_weights(layer l);
 image *get_weights(layer l);
 
 void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, char **names, int classes, int frame_skip, char *prefix, int avg, float hier_thresh, int w, int h, int fps, int fullscreen);
-<<<<<<< HEAD
-<<<<<<< HEAD
 void get_detection_detections(layer l, int w, int h, float thresh, detection *dets);
 
 char *option_find_str(list *l, char *key, char *def);
 int option_find_int(list *l, char *key, int def);
 int option_find_int_quiet(list *l, char *key, int def);
-=======
-=======
->>>>>>> origin
-void get_detection_boxes(layer l, int w, int h, float thresh, float **probs, box *boxes, int only_objectness);
-
-char *option_find_str(list *l, char *key, char *def);
-int option_find_int(list *l, char *key, int def);
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
 network *parse_network_cfg(char *filename);
 void save_weights(network *net, char *filename);
@@ -795,16 +684,8 @@ void save_weights_upto(network *net, char *filename, int cutoff);
 void load_weights_upto(network *net, char *filename, int start, int cutoff);
 
 void zero_objectness(layer l);
-<<<<<<< HEAD
-<<<<<<< HEAD
 void get_region_detections(layer l, int w, int h, int netw, int neth, float thresh, int *map, float tree_thresh, int relative, detection *dets);
 int get_yolo_detections(layer l, int w, int h, int netw, int neth, float thresh, int *map, int relative, detection *dets);
-=======
-void get_region_boxes(layer l, int w, int h, int netw, int neth, float thresh, float **probs, box *boxes, float **masks, int only_objectness, int *map, float tree_thresh, int relative);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-void get_region_boxes(layer l, int w, int h, int netw, int neth, float thresh, float **probs, box *boxes, float **masks, int only_objectness, int *map, float tree_thresh, int relative);
->>>>>>> origin
 void free_network(network *net);
 void set_batch_network(network *net, int b);
 void set_temp_network(network *net, float t);
@@ -812,20 +693,10 @@ image load_image(char *filename, int w, int h, int c);
 image load_image_color(char *filename, int w, int h);
 image make_image(int w, int h, int c);
 image resize_image(image im, int w, int h);
-<<<<<<< HEAD
-<<<<<<< HEAD
 void censor_image(image im, int dx, int dy, int w, int h);
 image letterbox_image(image im, int w, int h);
 image crop_image(image im, int dx, int dy, int w, int h);
 image center_crop_image(image im, int w, int h);
-=======
-image letterbox_image(image im, int w, int h);
-image crop_image(image im, int dx, int dy, int w, int h);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-image letterbox_image(image im, int w, int h);
-image crop_image(image im, int dx, int dy, int w, int h);
->>>>>>> origin
 image resize_min(image im, int min);
 image resize_max(image im, int max);
 image threshold_image(image im, float thresh);
@@ -857,24 +728,10 @@ double what_time_is_it_now();
 image rotate_image(image m, float rad);
 void visualize_network(network *net);
 float box_iou(box a, box b);
-<<<<<<< HEAD
-<<<<<<< HEAD
 data load_all_cifar10();
 box_label *read_boxes(char *filename, int *n);
 box float_to_box(float *f, int stride);
 void draw_detections(image im, detection *dets, int num, float thresh, char **names, image **alphabet, int classes);
-=======
-=======
->>>>>>> origin
-void do_nms(box *boxes, float **probs, int total, int classes, float thresh);
-data load_all_cifar10();
-box_label *read_boxes(char *filename, int *n);
-box float_to_box(float *f, int stride);
-void draw_detections(image im, int num, float thresh, box *boxes, float **probs, float **masks, char **names, image **alphabet, int classes);
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
 matrix network_predict_data(network *net, data test);
 image **load_alphabet();
@@ -884,37 +741,15 @@ float *network_predict(network *net, float *input);
 int network_width(network *net);
 int network_height(network *net);
 float *network_predict_image(network *net, image im);
-<<<<<<< HEAD
-<<<<<<< HEAD
 void network_detect(network *net, image im, float thresh, float hier_thresh, float nms, detection *dets);
 detection *get_network_boxes(network *net, int w, int h, float thresh, float hier, int *map, int relative, int *num);
 void free_detections(detection *dets, int n);
-=======
-void network_detect(network *net, image im, float thresh, float hier_thresh, float nms, box *boxes, float **probs);
-int num_boxes(network *net);
-box *make_boxes(network *net);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-void network_detect(network *net, image im, float thresh, float hier_thresh, float nms, box *boxes, float **probs);
-int num_boxes(network *net);
-box *make_boxes(network *net);
->>>>>>> origin
 
 void reset_network_state(network *net, int b);
 
 char **get_labels(char *filename);
-<<<<<<< HEAD
-<<<<<<< HEAD
 void do_nms_obj(detection *dets, int total, int classes, float thresh);
 void do_nms_sort(detection *dets, int total, int classes, float thresh);
-=======
-void do_nms_sort(box *boxes, float **probs, int total, int classes, float thresh);
-void do_nms_obj(box *boxes, float **probs, int total, int classes, float thresh);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-void do_nms_sort(box *boxes, float **probs, int total, int classes, float thresh);
-void do_nms_obj(box *boxes, float **probs, int total, int classes, float thresh);
->>>>>>> origin
 
 matrix make_matrix(int rows, int cols);
 
@@ -953,25 +788,13 @@ void free_list(list *l);
 float mse_array(float *a, int n);
 float variance_array(float *a, int n);
 float mag_array(float *a, int n);
-<<<<<<< HEAD
-<<<<<<< HEAD
 void scale_array(float *a, int n, float s);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 float mean_array(float *a, int n);
 float sum_array(float *a, int n);
 void normalize_array(float *a, int n);
 int *read_intlist(char *s, int *n, int d);
 size_t rand_size_t();
 float rand_normal();
-<<<<<<< HEAD
-<<<<<<< HEAD
 float rand_uniform(float min, float max);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
 #endif

@@ -28,29 +28,13 @@
     <!-- node name and ros graph name -->
     <arg name="camera_name" value="cv_camera" />
     <!-- url of the video stream -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <arg name="video_stream_provider" value="/media/ibrahim/BACK UP/video dataset/washing_face/a018-0036C.mp4" />
+    <arg name="video_stream_provider" value="/media/ibrahim/BACK UP/video dataset/washing_face/a018-0048C.mp4" />
     <!-- set camera fps to -->
     <arg name="set_camera_fps" value="1"/>
       <!-- set buffer queue size of frame capturing to -->
       <arg name="buffer_queue_size" value="10" />
     <!-- throttling the querying of frames to -->
     <arg name="fps" value="1" />
-=======
-=======
->>>>>>> origin
-    <arg name="video_stream_provider" value="/media/ibrahim/BACK UP/video dataset/eating_meal/a002-0421C.mp4" />
-    <!-- set camera fps to -->
-    <arg name="set_camera_fps" value="5"/>
-      <!-- set buffer queue size of frame capturing to -->
-      <arg name="buffer_queue_size" value="10" />
-    <!-- throttling the querying of frames to -->
-    <arg name="fps" value="5" />
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     <!-- setting frame_id -->
     <arg name="frame_id" value="rtsp" />
     <!-- camera info loading, take care as it needs the "file:///" at the start , e.g.:-->

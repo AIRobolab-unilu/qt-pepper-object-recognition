@@ -93,13 +93,7 @@ void test_super(char *cfgfile, char *weightfile, char *filename)
         image out = get_network_image(net);
         printf("%s: Predicted in %f seconds.\n", input, sec(clock()-time));
         save_image(out, "out");
-<<<<<<< HEAD
-<<<<<<< HEAD
         show_image(out, "out");
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
         free_image(im);
         if (filename) break;

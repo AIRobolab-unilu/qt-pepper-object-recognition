@@ -4,14 +4,8 @@
 #include <assert.h>
 
 #include "activation_layer.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "logistic_layer.h"
 #include "l2norm_layer.h"
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 #include "activations.h"
 #include "avgpool_layer.h"
 #include "batchnorm_layer.h"
@@ -32,23 +26,11 @@
 #include "option_list.h"
 #include "parser.h"
 #include "region_layer.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "yolo_layer.h"
 #include "reorg_layer.h"
 #include "rnn_layer.h"
 #include "route_layer.h"
 #include "upsample_layer.h"
-=======
-#include "reorg_layer.h"
-#include "rnn_layer.h"
-#include "route_layer.h"
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-#include "reorg_layer.h"
-#include "rnn_layer.h"
-#include "route_layer.h"
->>>>>>> origin
 #include "shortcut_layer.h"
 #include "softmax_layer.h"
 #include "lstm_layer.h"
@@ -69,27 +51,15 @@ LAYER_TYPE string_to_layer_type(char * type)
     if (strcmp(type, "[cost]")==0) return COST;
     if (strcmp(type, "[detection]")==0) return DETECTION;
     if (strcmp(type, "[region]")==0) return REGION;
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (strcmp(type, "[yolo]")==0) return YOLO;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     if (strcmp(type, "[local]")==0) return LOCAL;
     if (strcmp(type, "[conv]")==0
             || strcmp(type, "[convolutional]")==0) return CONVOLUTIONAL;
     if (strcmp(type, "[deconv]")==0
             || strcmp(type, "[deconvolutional]")==0) return DECONVOLUTIONAL;
     if (strcmp(type, "[activation]")==0) return ACTIVE;
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (strcmp(type, "[logistic]")==0) return LOGXENT;
     if (strcmp(type, "[l2norm]")==0) return L2NORM;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     if (strcmp(type, "[net]")==0
             || strcmp(type, "[network]")==0) return NETWORK;
     if (strcmp(type, "[crnn]")==0) return CRNN;
@@ -110,13 +80,7 @@ LAYER_TYPE string_to_layer_type(char * type)
     if (strcmp(type, "[soft]")==0
             || strcmp(type, "[softmax]")==0) return SOFTMAX;
     if (strcmp(type, "[route]")==0) return ROUTE;
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (strcmp(type, "[upsample]")==0) return UPSAMPLE;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     return BLANK;
 }
 
@@ -315,8 +279,6 @@ softmax_layer parse_softmax(list *options, size_params params)
     return layer;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 int *parse_yolo_mask(char *a, int *num)
 {
     int *mask = 0;
@@ -376,10 +338,6 @@ layer parse_yolo(list *options, size_params params)
     return l;
 }
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 layer parse_region(list *options, size_params params)
 {
     int coords = option_find_int(options, "coords", 4);
@@ -431,13 +389,7 @@ layer parse_region(list *options, size_params params)
     }
     return l;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 detection_layer parse_detection(list *options, size_params params)
 {
     int coords = option_find_int(options, "coords", 1);
@@ -450,15 +402,7 @@ detection_layer parse_detection(list *options, size_params params)
     layer.softmax = option_find_int(options, "softmax", 0);
     layer.sqrt = option_find_int(options, "sqrt", 0);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     layer.max_boxes = option_find_int_quiet(options, "max",90);
-=======
-    layer.max_boxes = option_find_int_quiet(options, "max",30);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    layer.max_boxes = option_find_int_quiet(options, "max",30);
->>>>>>> origin
     layer.coord_scale = option_find_float(options, "coord_scale", 1);
     layer.forced = option_find_int(options, "forced", 0);
     layer.object_scale = option_find_float(options, "object_scale", 1);
@@ -594,20 +538,12 @@ layer parse_shortcut(list *options, size_params params, network *net)
     char *activation_s = option_find_str(options, "activation", "linear");
     ACTIVATION activation = get_activation(activation_s);
     s.activation = activation;
-<<<<<<< HEAD
-<<<<<<< HEAD
     s.alpha = option_find_float_quiet(options, "alpha", 1);
     s.beta = option_find_float_quiet(options, "beta", 1);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     return s;
 }
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 layer parse_l2norm(list *options, size_params params)
 {
     layer l = make_l2norm_layer(params.batch, params.inputs);
@@ -627,10 +563,6 @@ layer parse_logistic(list *options, size_params params)
     return l;
 }
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 layer parse_activation(list *options, size_params params)
 {
     char *activation_s = option_find_str(options, "activation", "linear");
@@ -638,8 +570,6 @@ layer parse_activation(list *options, size_params params)
 
     layer l = make_activation_layer(params.batch, params.inputs, activation);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     l.h = l.out_h = params.h;
     l.w = l.out_w = params.w;
     l.c = l.out_c = params.c;
@@ -653,20 +583,6 @@ layer parse_upsample(list *options, size_params params, network *net)
     int stride = option_find_int(options, "stride",2);
     layer l = make_upsample_layer(params.batch, params.w, params.h, params.c, stride);
     l.scale = option_find_float_quiet(options, "scale", 1);
-=======
-=======
->>>>>>> origin
-    l.out_h = params.h;
-    l.out_w = params.w;
-    l.out_c = params.c;
-    l.h = params.h;
-    l.w = params.w;
-    l.c = params.c;
-
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     return l;
 }
 
@@ -754,13 +670,7 @@ void parse_net_options(list *options, network *net)
     net->max_ratio = option_find_float_quiet(options, "max_ratio", (float) net->max_crop / net->w);
     net->min_ratio = option_find_float_quiet(options, "min_ratio", (float) net->min_crop / net->w);
     net->center = option_find_int_quiet(options, "center",0);
-<<<<<<< HEAD
-<<<<<<< HEAD
     net->clip = option_find_float_quiet(options, "clip", 0);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
     net->angle = option_find_float_quiet(options, "angle", 0);
     net->aspect = option_find_float_quiet(options, "aspect", 1);
@@ -859,16 +769,10 @@ network *parse_network_cfg(char *filename)
             l = parse_local(options, params);
         }else if(lt == ACTIVE){
             l = parse_activation(options, params);
-<<<<<<< HEAD
-<<<<<<< HEAD
         }else if(lt == LOGXENT){
             l = parse_logistic(options, params);
         }else if(lt == L2NORM){
             l = parse_l2norm(options, params);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
         }else if(lt == RNN){
             l = parse_rnn(options, params);
         }else if(lt == GRU){
@@ -885,14 +789,8 @@ network *parse_network_cfg(char *filename)
             l = parse_cost(options, params);
         }else if(lt == REGION){
             l = parse_region(options, params);
-<<<<<<< HEAD
-<<<<<<< HEAD
         }else if(lt == YOLO){
             l = parse_yolo(options, params);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
         }else if(lt == DETECTION){
             l = parse_detection(options, params);
         }else if(lt == SOFTMAX){
@@ -910,14 +808,8 @@ network *parse_network_cfg(char *filename)
             l = parse_avgpool(options, params);
         }else if(lt == ROUTE){
             l = parse_route(options, params, net);
-<<<<<<< HEAD
-<<<<<<< HEAD
         }else if(lt == UPSAMPLE){
             l = parse_upsample(options, params, net);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
         }else if(lt == SHORTCUT){
             l = parse_shortcut(options, params, net);
         }else if(lt == DROPOUT){
@@ -931,23 +823,11 @@ network *parse_network_cfg(char *filename)
         }else{
             fprintf(stderr, "Type not recognized: %s\n", s->type);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         l.clip = net->clip;
         l.truth = option_find_int_quiet(options, "truth", 0);
         l.onlyforward = option_find_int_quiet(options, "onlyforward", 0);
         l.stopbackward = option_find_int_quiet(options, "stopbackward", 0);
         l.dontsave = option_find_int_quiet(options, "dontsave", 0);
-=======
-        l.truth = option_find_int_quiet(options, "truth", 0);
-        l.onlyforward = option_find_int_quiet(options, "onlyforward", 0);
-        l.stopbackward = option_find_int_quiet(options, "stopbackward", 0);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-        l.truth = option_find_int_quiet(options, "truth", 0);
-        l.onlyforward = option_find_int_quiet(options, "onlyforward", 0);
-        l.stopbackward = option_find_int_quiet(options, "stopbackward", 0);
->>>>>>> origin
         l.dontload = option_find_int_quiet(options, "dontload", 0);
         l.dontloadscales = option_find_int_quiet(options, "dontloadscales", 0);
         l.learning_rate_scale = option_find_float_quiet(options, "learning_rate", 1);
@@ -1131,13 +1011,7 @@ void save_weights_upto(network *net, char *filename, int cutoff)
     int i;
     for(i = 0; i < net->n && i < cutoff; ++i){
         layer l = net->layers[i];
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (l.dontsave) continue;
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
         if(l.type == CONVOLUTIONAL || l.type == DECONVOLUTIONAL){
             save_convolutional_weights(l, fp);
         } if(l.type == CONNECTED){

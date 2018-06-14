@@ -1,4 +1,4 @@
-# YOLO v2 for ROS: Real-Time Object Detection for ROS
+# YOLO V3 for ROS: Real-Time Object Detection for ROS
 
 ## Overview
 
@@ -6,11 +6,12 @@ This is a ROS package developed for object detection in camera images. You only 
 
 The YOLO packages have been tested under ROS Kinetic and Ubuntu 16.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
-**Author: Marko Bjelonic, marko.bjelonic@mavt.ethz.ch**
+**Author: [Marko Bjelonic](https://sites.google.com/site/bjelonicmarko/), marko.bjelonic@mavt.ethz.ch**
 
-**Affiliation: Robotic Systems Lab, ETH Zurich**
+**Affiliation: [Robotic Systems Lab](http://www.rsl.ethz.ch/), ETH Zurich**
 
 ![Darknet Ros example: Detection image](darknet_ros/doc/test_detection.png)
+![Darknet Ros example: Detection image](darknet_ros/doc/test_detection_anymal.png)
 
 ## Citing
 
@@ -29,7 +30,7 @@ This software is built on the Robotic Operating System ([ROS]), which needs to b
 
 [![Build Status](https://ci.leggedrobotics.com/buildStatus/icon?job=github_leggedrobotics/darknet_ros/master)](https://ci.leggedrobotics.com/job/github_leggedrobotics/job/darknet_ros/job/master/)
 
-In order to install darknet_ros, clone the latest version from this repository into your catkin workspace and compile the package using ROS.
+In order to install darknet_ros, clone the latest version using SSH (see [how to set up an SSH key](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html)) from this repository into your catkin workspace and compile the package using ROS.
 
     cd catkin_workspace/src
     git clone --recursive git@github.com:leggedrobotics/darknet_ros.git
@@ -58,6 +59,16 @@ The yolo-voc.weights and tiny-yolo-voc.weights are downloaded automatically in t
     cd catkin_workspace/src/darknet_ros/darknet_ros/yolo_network_config/weights/
     wget http://pjreddie.com/media/files/yolov2.weights
     wget http://pjreddie.com/media/files/yolov2-tiny.weights
+
+And weights from the VOC data set can be found here:
+
+    wget http://pjreddie.com/media/files/yolov2-voc.weights
+    wget http://pjreddie.com/media/files/yolov2-tiny-voc.weights
+
+And the pre-trained weight from YOLO v3 can be found here:
+
+    wget http://pjreddie.com/media/files/yolov3-voc.weights
+    wget http://pjreddie.com/media/files/yolov3.weights
 
 ### Use your own detection objects
 

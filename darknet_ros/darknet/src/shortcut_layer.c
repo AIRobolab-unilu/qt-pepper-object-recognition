@@ -8,15 +8,7 @@
 
 layer make_shortcut_layer(int batch, int index, int w, int h, int c, int w2, int h2, int c2)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     fprintf(stderr, "res  %3d                %4d x%4d x%4d   ->  %4d x%4d x%4d\n",index, w2,h2,c2, w,h,c);
-=======
-    fprintf(stderr,"Shortcut Layer: %d\n", index);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    fprintf(stderr,"Shortcut Layer: %d\n", index);
->>>>>>> origin
     layer l = {0};
     l.type = SHORTCUT;
     l.batch = batch;
@@ -46,8 +38,6 @@ layer make_shortcut_layer(int batch, int index, int w, int h, int c, int w2, int
     return l;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void resize_shortcut_layer(layer *l, int w, int h)
 {
     assert(l->w == l->out_w);
@@ -73,67 +63,28 @@ void forward_shortcut_layer(const layer l, network net)
 {
     copy_cpu(l.outputs*l.batch, net.input, 1, l.output, 1);
     shortcut_cpu(l.batch, l.w, l.h, l.c, net.layers[l.index].output, l.out_w, l.out_h, l.out_c, l.alpha, l.beta, l.output);
-=======
-=======
->>>>>>> origin
-void forward_shortcut_layer(const layer l, network net)
-{
-    copy_cpu(l.outputs*l.batch, net.input, 1, l.output, 1);
-    shortcut_cpu(l.batch, l.w, l.h, l.c, net.layers[l.index].output, l.out_w, l.out_h, l.out_c, l.output);
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
     activate_array(l.output, l.outputs*l.batch, l.activation);
 }
 
 void backward_shortcut_layer(const layer l, network net)
 {
     gradient_array(l.output, l.outputs*l.batch, l.activation, l.delta);
-<<<<<<< HEAD
-<<<<<<< HEAD
     axpy_cpu(l.outputs*l.batch, l.alpha, l.delta, 1, net.delta, 1);
     shortcut_cpu(l.batch, l.out_w, l.out_h, l.out_c, l.delta, l.w, l.h, l.c, 1, l.beta, net.layers[l.index].delta);
-=======
-    axpy_cpu(l.outputs*l.batch, 1, l.delta, 1, net.delta, 1);
-    shortcut_cpu(l.batch, l.out_w, l.out_h, l.out_c, l.delta, l.w, l.h, l.c, net.layers[l.index].delta);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    axpy_cpu(l.outputs*l.batch, 1, l.delta, 1, net.delta, 1);
-    shortcut_cpu(l.batch, l.out_w, l.out_h, l.out_c, l.delta, l.w, l.h, l.c, net.layers[l.index].delta);
->>>>>>> origin
 }
 
 #ifdef GPU
 void forward_shortcut_layer_gpu(const layer l, network net)
 {
     copy_gpu(l.outputs*l.batch, net.input_gpu, 1, l.output_gpu, 1);
-<<<<<<< HEAD
-<<<<<<< HEAD
     shortcut_gpu(l.batch, l.w, l.h, l.c, net.layers[l.index].output_gpu, l.out_w, l.out_h, l.out_c, l.alpha, l.beta, l.output_gpu);
-=======
-    shortcut_gpu(l.batch, l.w, l.h, l.c, net.layers[l.index].output_gpu, l.out_w, l.out_h, l.out_c, l.output_gpu);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    shortcut_gpu(l.batch, l.w, l.h, l.c, net.layers[l.index].output_gpu, l.out_w, l.out_h, l.out_c, l.output_gpu);
->>>>>>> origin
     activate_array_gpu(l.output_gpu, l.outputs*l.batch, l.activation);
 }
 
 void backward_shortcut_layer_gpu(const layer l, network net)
 {
     gradient_array_gpu(l.output_gpu, l.outputs*l.batch, l.activation, l.delta_gpu);
-<<<<<<< HEAD
-<<<<<<< HEAD
     axpy_gpu(l.outputs*l.batch, l.alpha, l.delta_gpu, 1, net.delta_gpu, 1);
     shortcut_gpu(l.batch, l.out_w, l.out_h, l.out_c, l.delta_gpu, l.w, l.h, l.c, 1, l.beta, net.layers[l.index].delta_gpu);
-=======
-    axpy_gpu(l.outputs*l.batch, 1, l.delta_gpu, 1, net.delta_gpu, 1);
-    shortcut_gpu(l.batch, l.out_w, l.out_h, l.out_c, l.delta_gpu, l.w, l.h, l.c, net.layers[l.index].delta_gpu);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    axpy_gpu(l.outputs*l.batch, 1, l.delta_gpu, 1, net.delta_gpu, 1);
-    shortcut_gpu(l.batch, l.out_w, l.out_h, l.out_c, l.delta_gpu, l.w, l.h, l.c, net.layers[l.index].delta_gpu);
->>>>>>> origin
 }
 #endif

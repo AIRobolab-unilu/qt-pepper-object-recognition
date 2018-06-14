@@ -65,15 +65,7 @@ void weighted_delta_cpu(float *a, float *b, float *s, float *da, float *db, floa
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void shortcut_cpu(int batch, int w1, int h1, int c1, float *add, int w2, int h2, int c2, float s1, float s2, float *out)
-=======
-void shortcut_cpu(int batch, int w1, int h1, int c1, float *add, int w2, int h2, int c2, float *out)
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-void shortcut_cpu(int batch, int w1, int h1, int c1, float *add, int w2, int h2, int c2, float *out)
->>>>>>> origin
 {
     int stride = w1/w2;
     int sample = w2/w1;
@@ -92,15 +84,7 @@ void shortcut_cpu(int batch, int w1, int h1, int c1, float *add, int w2, int h2,
                 for(i = 0; i < minw; ++i){
                     int out_index = i*sample + w2*(j*sample + h2*(k + c2*b));
                     int add_index = i*stride + w1*(j*stride + h1*(k + c1*b));
-<<<<<<< HEAD
-<<<<<<< HEAD
                     out[out_index] = s1*out[out_index] + s2*add[add_index];
-=======
-                    out[out_index] += add[add_index];
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-                    out[out_index] += add[add_index];
->>>>>>> origin
                 }
             }
         }
@@ -139,8 +123,6 @@ void variance_cpu(float *x, float *mean, int batch, int filters, int spatial, fl
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void l2normalize_cpu(float *x, float *dx, int batch, int filters, int spatial)
 {
     int b,f,i;
@@ -162,10 +144,6 @@ void l2normalize_cpu(float *x, float *dx, int batch, int filters, int spatial)
 }
 
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 void normalize_cpu(float *x, float *mean, float *variance, int batch, int filters, int spatial)
 {
     int b, f, i;
@@ -284,8 +262,6 @@ void l1_cpu(int n, float *pred, float *truth, float *delta, float *error)
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void softmax_x_ent_cpu(int n, float *pred, float *truth, float *delta, float *error)
 {
     int i;
@@ -308,10 +284,6 @@ void logistic_x_ent_cpu(int n, float *pred, float *truth, float *delta, float *e
     }
 }
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 void l2_cpu(int n, float *pred, float *truth, float *delta, float *error)
 {
     int i;
@@ -359,8 +331,6 @@ void softmax_cpu(float *input, int n, int batch, int batch_offset, int groups, i
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void upsample_cpu(float *in, int w, int h, int c, int batch, int stride, int forward, float scale, float *out)
 {
     int i, j, k, b;
@@ -379,7 +349,3 @@ void upsample_cpu(float *in, int w, int h, int c, int batch, int stride, int for
 }
 
 
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin

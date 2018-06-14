@@ -45,15 +45,7 @@ extern "C" void backward_deconvolutional_layer_gpu(layer l, network net)
 {
     int i;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     //constrain_gpu(l.outputs*l.batch, 1, l.delta_gpu, 1);
-=======
-    constrain_gpu(l.outputs*l.batch, 1, l.delta_gpu, 1);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-    constrain_gpu(l.outputs*l.batch, 1, l.delta_gpu, 1);
->>>>>>> origin
     gradient_array_gpu(l.output_gpu, l.outputs*l.batch, l.activation, l.delta_gpu);
 
     if(l.batch_normalize){
@@ -124,41 +116,16 @@ void update_deconvolutional_layer_gpu(layer l, update_args a)
     float decay = a.decay;
     int batch = a.batch;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     if(a.adam){
         adam_update_gpu(l.weights_gpu, l.weight_updates_gpu, l.m_gpu, l.v_gpu, a.B1, a.B2, a.eps, decay, learning_rate, l.nweights, batch, a.t);
-=======
-=======
->>>>>>> origin
-    int size = l.size*l.size*l.c*l.n;
-
-    if(a.adam){
-        adam_update_gpu(l.weights_gpu, l.weight_updates_gpu, l.m_gpu, l.v_gpu, a.B1, a.B2, a.eps, decay, learning_rate, size, batch, a.t);
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
         adam_update_gpu(l.biases_gpu, l.bias_updates_gpu, l.bias_m_gpu, l.bias_v_gpu, a.B1, a.B2, a.eps, decay, learning_rate, l.n, batch, a.t);
         if(l.scales_gpu){
             adam_update_gpu(l.scales_gpu, l.scale_updates_gpu, l.scale_m_gpu, l.scale_v_gpu, a.B1, a.B2, a.eps, decay, learning_rate, l.n, batch, a.t);
         }
     }else{
-<<<<<<< HEAD
-<<<<<<< HEAD
         axpy_gpu(l.nweights, -decay*batch, l.weights_gpu, 1, l.weight_updates_gpu, 1);
         axpy_gpu(l.nweights, learning_rate/batch, l.weight_updates_gpu, 1, l.weights_gpu, 1);
         scal_gpu(l.nweights, momentum, l.weight_updates_gpu, 1);
-=======
-        axpy_gpu(size, -decay*batch, l.weights_gpu, 1, l.weight_updates_gpu, 1);
-        axpy_gpu(size, learning_rate/batch, l.weight_updates_gpu, 1, l.weights_gpu, 1);
-        scal_gpu(size, momentum, l.weight_updates_gpu, 1);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-        axpy_gpu(size, -decay*batch, l.weights_gpu, 1, l.weight_updates_gpu, 1);
-        axpy_gpu(size, learning_rate/batch, l.weight_updates_gpu, 1, l.weights_gpu, 1);
-        scal_gpu(size, momentum, l.weight_updates_gpu, 1);
->>>>>>> origin
 
         axpy_gpu(l.n, learning_rate/batch, l.bias_updates_gpu, 1, l.biases_gpu, 1);
         scal_gpu(l.n, momentum, l.bias_updates_gpu, 1);

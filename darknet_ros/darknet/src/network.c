@@ -17,13 +17,7 @@
 #include "activation_layer.h"
 #include "detection_layer.h"
 #include "region_layer.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "yolo_layer.h"
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 #include "normalization_layer.h"
 #include "batchnorm_layer.h"
 #include "maxpool_layer.h"
@@ -33,13 +27,7 @@
 #include "softmax_layer.h"
 #include "dropout_layer.h"
 #include "route_layer.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "upsample_layer.h"
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 #include "shortcut_layer.h"
 #include "parser.h"
 #include "data.h"
@@ -164,14 +152,8 @@ char *get_layer_string(LAYER_TYPE a)
             return "detection";
         case REGION:
             return "region";
-<<<<<<< HEAD
-<<<<<<< HEAD
         case YOLO:
             return "yolo";
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
         case DROPOUT:
             return "dropout";
         case CROP:
@@ -397,8 +379,6 @@ int resize_network(network *net, int w, int h)
             resize_maxpool_layer(&l, w, h);
         }else if(l.type == REGION){
             resize_region_layer(&l, w, h);
-<<<<<<< HEAD
-<<<<<<< HEAD
         }else if(l.type == YOLO){
             resize_yolo_layer(&l, w, h);
         }else if(l.type == ROUTE){
@@ -407,14 +387,6 @@ int resize_network(network *net, int w, int h)
             resize_shortcut_layer(&l, w, h);
         }else if(l.type == UPSAMPLE){
             resize_upsample_layer(&l, w, h);
-=======
-        }else if(l.type == ROUTE){
-            resize_route_layer(&l, net);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-        }else if(l.type == ROUTE){
-            resize_route_layer(&l, net);
->>>>>>> origin
         }else if(l.type == REORG){
             resize_reorg_layer(&l, w, h);
         }else if(l.type == AVGPOOL){
@@ -450,17 +422,9 @@ int resize_network(network *net, int w, int h)
         cuda_free(net->truth_gpu);
         net->input_gpu = cuda_make_array(net->input, net->inputs*net->batch);
         net->truth_gpu = cuda_make_array(net->truth, net->truths*net->batch);
-<<<<<<< HEAD
-<<<<<<< HEAD
         if(workspace_size){
             net->workspace = cuda_make_array(0, (workspace_size-1)/sizeof(float)+1);
         }
-=======
-        net->workspace = cuda_make_array(0, (workspace_size-1)/sizeof(float)+1);
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
-        net->workspace = cuda_make_array(0, (workspace_size-1)/sizeof(float)+1);
->>>>>>> origin
     }else {
         free(net->workspace);
         net->workspace = calloc(1, workspace_size);
@@ -543,8 +507,6 @@ float *network_predict(network *net, float *input)
     return out;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 int num_detections(network *net, float thresh)
 {
     int i;
@@ -612,43 +574,6 @@ void free_detections(detection *dets, int n)
         if(dets[i].mask) free(dets[i].mask);
     }
     free(dets);
-=======
-=======
->>>>>>> origin
-int num_boxes(network *net)
-{
-    layer l = net->layers[net->n-1];
-    return l.w*l.h*l.n;
-}
-
-box *make_boxes(network *net)
-{
-    layer l = net->layers[net->n-1];
-    box *boxes = calloc(l.w*l.h*l.n, sizeof(box));
-    return boxes;
-}
-
-float **make_probs(network *net)
-{
-    int j;
-    layer l = net->layers[net->n-1];
-    float **probs = calloc(l.w*l.h*l.n, sizeof(float *));
-    for(j = 0; j < l.w*l.h*l.n; ++j) probs[j] = calloc(l.classes + 1, sizeof(float *));
-    return probs;
-}
-
-void network_detect(network *net, image im, float thresh, float hier_thresh, float nms, box *boxes, float **probs)
-{
-    network_predict_image(net, im);
-    layer l = net->layers[net->n-1];
-    if(l.type == REGION){
-        get_region_boxes(l, im.w, im.h, net->w, net->h, thresh, probs, boxes, 0, 0, 0, hier_thresh, 0);
-        if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
-    }
-<<<<<<< HEAD
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 }
 
 float *network_predict_image(network *net, image im)

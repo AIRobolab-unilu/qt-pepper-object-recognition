@@ -83,16 +83,10 @@ void optimize_picture(network *net, image orig, int max_layer, float scale, floa
      */
 
     //rate = rate / abs_mean(out.data, out.w*out.h*out.c);
-<<<<<<< HEAD
-<<<<<<< HEAD
     image gray = make_image(out.w, out.h, out.c);
     fill_image(gray, .5);
     axpy_cpu(orig.w*orig.h*orig.c, -1, orig.data, 1, gray.data, 1);
     axpy_cpu(orig.w*orig.h*orig.c, .1, gray.data, 1, out.data, 1);
-=======
->>>>>>> ba4c2b8d6b8dd56d46e2de94840a1b3c5c30f40a
-=======
->>>>>>> origin
 
     if(norm) normalize_array(out.data, out.w*out.h*out.c);
     axpy_cpu(orig.w*orig.h*orig.c, rate, out.data, 1, orig.data, 1);
