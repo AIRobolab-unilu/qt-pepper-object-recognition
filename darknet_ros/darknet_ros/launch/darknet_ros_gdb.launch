@@ -3,8 +3,10 @@
 <launch>
 
   <!-- Launch darknet ros with gdb launch prefix -->
-  <include file="$(find darknet_ros)/launch/darknet_ros.launch">
-    <arg name="launch_prefix"   value="gdb -ex run --args"/>
+  <include file="$(find darknet_ros)/launch/darknet_ros.launch" />
+
+  <include file="$(find face_classification)/launch/face_classification_fixed.launch">
+    <arg name="launch_prefix"   value="xterm -e"/>
   </include>
 
 </launch>

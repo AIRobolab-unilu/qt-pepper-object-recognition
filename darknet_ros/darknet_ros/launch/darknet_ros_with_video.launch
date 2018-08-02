@@ -9,6 +9,7 @@
   <arg name="yolo_config_path"           default="$(find darknet_ros)/yolo_network_config/cfg"/>
   <arg name="yolo_model_name"           default="yolov2-tiny"/>
   <arg name="input_camera_topic"           default="/cv_camera/image_raw"/>
+  <arg name="video_path"                  default="/media/ibrahim/BACK UP/stairs dataset/video dataset/washing_face/a018-0048C.mp4" />
 
   <!-- Load parameters -->
   <rosparam command="load" ns="darknet_ros" file="$(find darknet_ros)/config/ros.yaml"/>
@@ -28,7 +29,7 @@
     <!-- node name and ros graph name -->
     <arg name="camera_name" value="cv_camera" />
     <!-- url of the video stream -->
-    <arg name="video_stream_provider" value="/media/ibrahim/BACK UP/video dataset/washing_face/a018-0048C.mp4" />
+    <arg name="video_stream_provider" value="$(arg video_path)" />
     <!-- set camera fps to -->
     <arg name="set_camera_fps" value="1"/>
       <!-- set buffer queue size of frame capturing to -->
